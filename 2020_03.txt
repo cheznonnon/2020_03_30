@@ -1,0 +1,266 @@
+
+
+----------==========----------==========----------==========----------
+
+
+"Eat Your Own Catfood."
+
+
+----------==========----------==========----------==========----------
+
+
+Change Log
+
+
+2020/03/30
+
+
+BUGFIX
+
+
+	neutral/bmp/_transparent.c
+		macros
+			OLD : not check "bmp" is NULL or not
+			NEW : fixed
+			[!] : re-implement as functions
+	neutral/posix.c
+		n_posix_opendir()
+			OLD : memory leak
+			NEW : fixed
+
+	win32/win/icon.c
+		n_win_icon_name_resolve() : folders
+			OLD :  shell32.dll,3
+			NEW : imageres.dll,3 when possible
+			[!] : shell32.dll hasn't a 256px icon
+		n_win_icon_name_resolve() : Win2000 or earlier : ExpandEnvironmentStrings()
+			OLD : a broken path will be returned when in/out are the same buffer
+			NEW : fixed
+
+	CatPad
+		TxtBox : Search Field : when key operation
+			OLD : fading
+			NEW : do nothing
+		TxtBox : Search Field : Ctrl + F
+			OLD : focus frame remains when focus is lost
+			NEW : fixed
+	Marie
+		WinNT4.0 : main icon
+			OLD : broken image is displayed
+			NEW : fixed
+			[!] : NT4.0 only supports under 256 colors
+	Nekomimi Nina RPG
+		game pads : up/down interval
+			OLD : 200 msec. : too fast
+			NEW : 333 msec.
+	OrangeCat
+		Info View : Simple Menu : back to Item View
+			OLD : not disappear
+			NEW : fixed
+
+
+NEW_FEATURE
+
+
+	neutral/bmp/detect.c
+		n_bmp_usedcolors_detect()
+			NEW : count used colors
+	neutral/curico.c
+		source code
+			NEW : refactored
+	neutral/png.c
+		decoder : supported format
+			NEW : 16-bit per channel is supported
+
+	win32/gdi/icon.c
+		source code
+			NEW : refactored
+	win32/win/icon.c
+		source code
+			NEW : refactored
+	win32/win_scrollbar.c
+		N_WIN_SCROLLBAR_OPTION_BIG_ARROWS
+			NEW : IE11 like large buttons
+
+	readme
+		Win9x : Reset Icon Cache
+			NEW : "press F8 key to boot as safemode"
+		WinNT : Reset Icon Cache
+			NEW : "stop Explorer and delete cache files"
+
+	Neko no Te
+		smallbuttons : embedded input field
+			OLD : focus will be lost
+			NEW : hold focus
+	Nekomimi Nina RPG
+		game pads : 6 buttons
+			NEW:  supported
+		game pads : XInput
+			NEW : vibrate when being hit
+	OrangeCat
+		icons
+			NEW : more accurate and beautiful than older
+
+
+----------==========----------==========----------==========----------
+
+
+Change Log
+
+
+2020/03/20
+
+
+BUGFIX
+
+
+	win32/gdi/icon.c
+		n_win_icon_init_resource_size : 256px icons
+			OLD : crash
+			NEW : fixed
+	win32/win/icon.c
+		n_win_icon_name_resolve() : shortcut files
+			OLD : misbehave
+			NEW : fixed
+			[!] : when a target path and an icon path are different
+	win32/win_simplemenu.c
+		n_win_simplemenu_draw_calc_all() : icon size
+			OLD : inaccurate
+			NEW : fixed
+	win32/win_txtbox.c
+		N_WIN_TXTBOX_OPTION_ONELINE_FADEOUT : key operation
+			OLD : on
+			NEW : off
+
+	Nekomimi Nina RPG
+		source code : resources
+			OLD : icon is not exist
+			NEW : fixed
+		64-bit Version : window size
+			OLD : insufficient
+			NEW : fixed
+		64-bit Version : High-DPI
+			OLD : transition fails
+			NEW : fixed
+		sound resources
+			OLD : noise
+			NEW : fixed
+	Nonnon Paint
+		64-bit Version : High-DPI : Shift2Zoom
+			OLD : redraw error at exit
+			NEW : fixed
+	OrangeCat
+		Info View
+			OLD : inaccurate background color after second run
+			NEW : fixed
+
+
+NEW_FEATURE
+
+
+	neutral/bmp/color.c
+		n_bmp_blur_pixel()
+			NEW : strong version of antialias
+	neutral/bmp/filter.c
+		n_bmp_blur()
+			NEW : strong version of antialias
+	neutral/curico.c
+		n_curico_extract()
+			NEW : extract as n_bmp from multi-icon/cursor on memory
+
+	Game Console
+		sounds
+			NEW : shared, EXE size reduced
+	Nekomimi Nina RPG
+		animation : Nina : Magic
+			NEW : lighter than older
+	OrangeCat
+		titlebar menu : "Icon"
+			NEW : you can choose icon resource size
+			[!] : 16/24/32/48/64/256 available
+			[?] : for making icons, Explorer has a bug since Vista
+		titlebar menu : "Colors"
+			NEW : you can choose icon color depth
+			[!] : 16/256/Full Color available
+			[?] : for making icons
+
+
+----------==========----------==========----------==========----------
+
+
+Change Log
+
+
+2020/03/10
+
+
+BUGFIX
+
+
+	neutral/string_path.c
+		n_string_path_commandline_option()
+			OLD : n_string_match() only
+			NEW : check NUL or space available
+			[!] : usage is changed
+
+	win32/gdi.c
+		n_win_icon_init_resource_size : 256px icons
+			OLD : crash
+			NEW : fixed
+	win32/win/icon.c
+		source code
+			OLD : garbage TAB characters
+			NEW : removed
+	win32/win_scrollbar.c
+		n_win_scrollbar_metrics() : shaft calculation
+			OLD : misbehave when width and height are not the same
+			NEW : fixed
+	win32/win_txtbox.c
+		ONELINE : paste : when clipboard has an empty line
+			OLD : focus frame blinks
+			NEW : fixed
+
+	Nonnon Paint
+		Alpha Tweaker : icon
+			OLD : inaccurate
+			NEW : fixed
+			[x] : clipboard sender is implemented
+		Thumbnail : Grabber : when "Blend" is changed
+			OLD : not sync
+			NEW : fixed
+
+
+NEW_FEATURE
+
+
+	win32/win/_debug.c
+		n_win_debug_count()
+			NEW : integrated function
+	win32/gdi/icon.c
+		link arrow
+			NEW : delayed loading available
+			[!] : auto apply to resized icon available
+
+	Nekomimi Nina RPG
+		released
+			NEW : old FF-like Battle Game
+	Nonnon Paint
+		Ctrl2Drag
+			NEW : GrabNDrag will be ON while Ctrl key is pressed
+		Shift2Zoom
+			NEW : UI appear when shift key is pressed
+			[!] : "Zoom In" for upper half, "Zoom Out" for lower half
+			[!] : zoom will change if you click
+		Pen : straight line
+			NEW : direction preview available
+		Pen : straight line : key assignment
+			OLD : Ctrl
+			NEW : Space
+	OrangeCat
+		Item View : Link Arrow
+			OLD : bottom-left of icon default size
+			NEW : bottom-left of displayed area
+
+
+----------==========----------==========----------==========----------
+
